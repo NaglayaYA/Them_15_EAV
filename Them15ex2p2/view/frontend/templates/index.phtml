@@ -1,0 +1,16 @@
+<?php
+/** @var \Perspective\Them15ex2p2\Block\Template $block */
+$viewModel = $block->getViewModel();
+$currentProduct = $viewModel->getCurrentProduct();
+$w = 10;
+echo('<b>Product Weight : </b>' . $w . ' кг' . '<br>');
+echo('<b>X value: </b>' . $viewModel->getXValue() . ' кг' . '<br>');
+echo('<b>Y value: </b>' . $viewModel->getYValue() . '$' . '<br>');
+echo('<b> Air name: </b>' . $currentProduct->getData('air_freight_only') . '<br>');
+if ($viewModel->isEnabled() && $currentProduct->getData('air_freight_only')=='charter plane' && $w>$viewModel->getXValue()):
+    echo ('<hr>');
+    echo('<h2> За перевозку ' . $currentProduct->getData('air_freight_only'). ' будет начислена дополнительная оплата '. ($w - $viewModel->getXValue())*$viewModel->getXValue().  '$' . '<br></h2>');
+endif;
+
+?>
+
